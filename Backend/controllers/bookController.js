@@ -1,5 +1,5 @@
 const Book = require("../models/book");
-const Transaction = require("../models/transaction");
+const Transaction = require("../models/Transation");
 const addBook = async (req, res) => {
   try {
     const { title, author, isbn, category, totalCopies } = req.body;

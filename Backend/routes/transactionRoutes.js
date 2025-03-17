@@ -1,10 +1,10 @@
 const express = require("express");
-const { verifyToken } = require("../middleware/authMiddleware");
+const { authMiddleware } = require("../middleware/authMiddleware");
 const { issueBook, returnBook } = require("../controllers/transactionController");
 
 const router = express.Router();
 
-router.post("/issue", verifyToken, issueBook);
-router.post("/return", verifyToken, returnBook);
+router.post("/issue", authMiddleware, issueBook);
+router.post("/return", authMiddleware, returnBook);
 
 module.exports = router;
