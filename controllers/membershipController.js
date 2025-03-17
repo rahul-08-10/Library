@@ -1,4 +1,4 @@
-const Membership = require("../models/Membership");
+const Membership = require("../models/user");
 
 const addMembership = async (req, res) => {
   try {

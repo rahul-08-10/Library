@@ -13,9 +13,11 @@ const register = async (req, res) => {
 
         res.status(201).json({ message: "User registered successfully" });
     } catch (error) {
-        res.status(500).json({ message: "Server error" });
+        console.error("Registration Error:", error);  // Logs actual error
+        res.status(500).json({ message: "Server error", error: error.message });
     }
 };
+
 
 const login = async (req, res) => {
     try {
@@ -26,13 +28,19 @@ const login = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: "Invalid email or password" });
 
-        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1d" });
+        const token = jwt.sign(
+            { id: user._id, role: user.role },
+            process.env.JWT,
+            { expiresIn: "1d" }
+        );
 
         res.status(200).json({ message: "Login successful", token });
     } catch (error) {
-        res.status(500).json({ message: "Server error" });
+        console.error("Login Error:", error);  // Log the actual error
+        res.status(500).json({ message: "Server error", error: error.message });
     }
 };
+
 
 const logout = (req, res) => {
     res.status(200).json({ message: "User logged out successfully" });

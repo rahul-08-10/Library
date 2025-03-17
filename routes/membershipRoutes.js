@@ -1,6 +1,6 @@
 const express = require("express");
 const {addMembership , updateMembership} = require("../controllers/membershipController");
-const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
+const { isAdmin } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 router.post('/addMember' , isAdmin , addMembership);

@@ -1,5 +1,5 @@
-const Transaction = require("../models/Transaction");
-
+// const Transaction = require("../models/Transaction");
+const Transaction =  require("../models/Transation");
 const issueBook = async (req, res) => {
     try {
         const { userId, bookId, issueDate } = req.body;

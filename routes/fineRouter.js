@@ -1,10 +1,10 @@
 const express = require("express");
-const { verifyToken } = require("../middleware/authMiddleware");
+const { authMiddleware} = require("../middleware/authMiddleware");
 const { calculateFine, payFine } = require("../controllers/fineController");
 
 const router = express.Router();
 
-router.get("/calculate/:userId", verifyToken, calculateFine);
-router.post("/pay", verifyToken, payFine);
+router.get("/calculate/:userId", authMiddleware , calculateFine);
+router.post("/pay", authMiddleware , payFine);
 
 module.exports = router;

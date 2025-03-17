@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     role: { type: String, enum: ["admin", "user"], default: "user" },
-    membershipNumber: { type: String, required: true, unique: true },
+    membershipNumber: { type: String, unique: true },
     membershipDuration: {
         type: String,
         enum: ["6 months", "1 year", "2 years"],

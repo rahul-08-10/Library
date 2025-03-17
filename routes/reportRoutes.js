@@ -1,16 +1,14 @@
 const express = require("express");
 const { getIssuedBooksReport, getReturnedBooksReport, getPendingFinesReport } = require("../controllers/reportController");
-const { verifyToken, isAdmin } = require("../middleware/authMiddleware");
+const { authMiddleware, isAdmin } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-// Route to get issued books report
-router.get("/issued-books", verifyToken, isAdmin, getIssuedBooksReport);
+router.get("/issued-books", authMiddleware, isAdmin, getIssuedBooksReport);
 
-// Route to get returned books report
-router.get("/returned-books", verifyToken, isAdmin, getReturnedBooksReport);
+router.get("/returned-books", authMiddleware, isAdmin, getReturnedBooksReport);
 
-// Route to get pending fines report
-router.get("/pending-fines", verifyToken, isAdmin, getPendingFinesReport);
+
+router.get("/pending-fines", authMiddleware , isAdmin, getPendingFinesReport);
 
 module.exports = router;

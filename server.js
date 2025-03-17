@@ -9,11 +9,19 @@ const transactionRoutes = require("./routes/transactionRoutes");
 const membership =  require("./routes/membershipRoutes.js")
 const reportRouters =  require("./routes/reportRoutes");
 const databaseConnection  =  require("./config/database");
-dotenv.config();
-
+require('dotenv').config();
+const port  =  process.env.PORT || 4000
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+
+  app.get("/", (req, res) => {
+    res.send("Server is running!");
+});
 
 // Routes
 app.use("/api/auth", authRoutes);
